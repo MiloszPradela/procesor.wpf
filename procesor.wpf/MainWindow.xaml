@@ -1,0 +1,224 @@
+﻿<Window x:Class="procesor.wpf.MainWindow" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:procesor.wpf"
+        mc:Ignorable="d"
+        Title="Intel 8086" Height="493" Width="877">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="5">
+            <TextBlock HorizontalAlignment="Center">AH</TextBlock>
+            <TextBox Width="100" Height="25" x:Name="AH" MaxLength="2" PreviewTextInput="HexValidation">00</TextBox>
+            <TextBlock HorizontalAlignment="Center">BH</TextBlock>
+            <TextBox Width="100" Height="25" x:Name="BH" MaxLength="2" PreviewTextInput="HexValidation">00</TextBox>
+            <TextBlock HorizontalAlignment="Center">CH</TextBlock>
+            <TextBox Width="100" Height="25" x:Name="CH" MaxLength="2" PreviewTextInput="HexValidation">00</TextBox>
+            <TextBlock HorizontalAlignment="Center">DH</TextBlock>
+            <TextBox Width="100" Height="25" x:Name="DH" MaxLength="2" PreviewTextInput="HexValidation">00</TextBox>
+            <Separator Height="25"></Separator>
+            <Button Click="MOV_Click" Margin="0 20 0 0" Width="100" Height="25">MOV</Button>
+            <Separator Background="Transparent"></Separator>
+        </StackPanel>
+        <ComboBox x:Name="MOVDestination" HorizontalAlignment="Left" Height="25" VerticalAlignment="Bottom" Margin="21 0 20 20" SelectedIndex="0">
+            <ComboBoxItem>AH</ComboBoxItem>
+            <ComboBoxItem>BH</ComboBoxItem>
+            <ComboBoxItem>CH</ComboBoxItem>
+            <ComboBoxItem>DH</ComboBoxItem>
+            <ComboBoxItem>AL</ComboBoxItem>
+            <ComboBoxItem>BL</ComboBoxItem>
+            <ComboBoxItem>CL</ComboBoxItem>
+            <ComboBoxItem>DL</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="MOVSource" HorizontalAlignment="Right" Height="25" VerticalAlignment="Bottom" Margin="20 0 21 20" SelectedIndex="0">
+            <ComboBoxItem>AH</ComboBoxItem>
+            <ComboBoxItem>BH</ComboBoxItem>
+            <ComboBoxItem>CH</ComboBoxItem>
+            <ComboBoxItem>DH</ComboBoxItem>
+            <ComboBoxItem>AL</ComboBoxItem>
+            <ComboBoxItem>BL</ComboBoxItem>
+            <ComboBoxItem>CL</ComboBoxItem>
+            <ComboBoxItem>DL</ComboBoxItem>
+        </ComboBox>
+
+        <StackPanel Grid.Column="1" Margin="5">
+            <TextBlock HorizontalAlignment="Center">AL</TextBlock>
+            <TextBox Width="100" Height="25" x:Name="AL" MaxLength="2" PreviewTextInput="HexValidation">00</TextBox>
+            <TextBlock HorizontalAlignment="Center">BL</TextBlock>
+            <TextBox Width="100" Height="25" x:Name="BL" MaxLength="2" PreviewTextInput="HexValidation">00</TextBox>
+            <TextBlock HorizontalAlignment="Center">CL</TextBlock>
+            <TextBox Width="100" Height="25" x:Name="CL" MaxLength="2" PreviewTextInput="HexValidation">00</TextBox>
+            <TextBlock HorizontalAlignment="Center">DL</TextBlock>
+            <TextBox Width="100" Height="25" x:Name="DL" MaxLength="2" PreviewTextInput="HexValidation">00</TextBox>
+            <Separator Height="25"></Separator>
+            <Button Click="XCHG_Click" Margin="0 20 0 0" Width="100" Height="25">XCHG</Button>
+        </StackPanel>
+        <ComboBox x:Name="XCHGDestination" Grid.Column="1" HorizontalAlignment="Left" Height="25" VerticalAlignment="Bottom" Margin="21 0 0 20" SelectedIndex="0">
+            <ComboBoxItem>AH</ComboBoxItem>
+            <ComboBoxItem>BH</ComboBoxItem>
+            <ComboBoxItem>CH</ComboBoxItem>
+            <ComboBoxItem>DH</ComboBoxItem>
+            <ComboBoxItem>AL</ComboBoxItem>
+            <ComboBoxItem>BL</ComboBoxItem>
+            <ComboBoxItem>CL</ComboBoxItem>
+            <ComboBoxItem>DL</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="XCHGSource" Grid.Column="1" HorizontalAlignment="Right" Height="25" VerticalAlignment="Bottom" Margin="0 0 21 20" SelectedIndex="0">
+            <ComboBoxItem>AH</ComboBoxItem>
+            <ComboBoxItem>BH</ComboBoxItem>
+            <ComboBoxItem>CH</ComboBoxItem>
+            <ComboBoxItem>DH</ComboBoxItem>
+            <ComboBoxItem>AL</ComboBoxItem>
+            <ComboBoxItem>BL</ComboBoxItem>
+            <ComboBoxItem>CL</ComboBoxItem>
+            <ComboBoxItem>DL</ComboBoxItem>
+        </ComboBox>
+        <Button Grid.Column="2" Content="INC" Click="INC_Click" HorizontalAlignment="Left" Margin="10 25 5 5" Height="25" Width="65" VerticalAlignment="Top"/>
+        <Button Grid.Column="2" Content="DEC" Click="DEC_Click" HorizontalAlignment="Left" Margin="10 60 5 5" Height="25" Width="65" VerticalAlignment="Top"/>
+        <Button Grid.Column="2" Content="NOT" Click="NOT_Click" HorizontalAlignment="Left" Margin="10 95 5 5" Height="25" Width="65" VerticalAlignment="Top"/>
+        <Button Grid.Column="2" Content="ADD" Click="ADD_Click" HorizontalAlignment="Left" Margin="10 130 5 5" Height="25" Width="65" VerticalAlignment="Top"/>
+        <Button Grid.Column="2" Content="SUB" Click="SUB_Click" HorizontalAlignment="Left" Margin="10 165 5 5" Height="25" Width="65" VerticalAlignment="Top"/>
+        <Button Grid.Column="2" Content="AND" Click="AND_Click" HorizontalAlignment="Left" Margin="10 200 5 5" Height="25" Width="65" VerticalAlignment="Top"/>
+        <Button Grid.Column="2" Content="OR" Click="OR_Click" HorizontalAlignment="Left" Margin="10 235 5 5" Height="25" Width="65" VerticalAlignment="Top"/>
+        <Button Grid.Column="2" Content="XOR" Click="XOR_Click" HorizontalAlignment="Left" Margin="10 270 5 5" Height="25" Width="65" VerticalAlignment="Top"/>
+
+        <ComboBox x:Name="INC" Grid.Column="2" HorizontalAlignment="Right" Margin="10 25 105 5" Height="25" Width="65" VerticalAlignment="Top" SelectedIndex="0">
+            <ComboBoxItem>AH</ComboBoxItem>
+            <ComboBoxItem>BH</ComboBoxItem>
+            <ComboBoxItem>CH</ComboBoxItem>
+            <ComboBoxItem>DH</ComboBoxItem>
+            <ComboBoxItem>AL</ComboBoxItem>
+            <ComboBoxItem>BL</ComboBoxItem>
+            <ComboBoxItem>CL</ComboBoxItem>
+            <ComboBoxItem>DL</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="DEC" Grid.Column="2" HorizontalAlignment="Right" Margin="10 60 105 5" Height="25" Width="65" VerticalAlignment="Top" SelectedIndex="0">
+            <ComboBoxItem>AH</ComboBoxItem>
+            <ComboBoxItem>BH</ComboBoxItem>
+            <ComboBoxItem>CH</ComboBoxItem>
+            <ComboBoxItem>DH</ComboBoxItem>
+            <ComboBoxItem>AL</ComboBoxItem>
+            <ComboBoxItem>BL</ComboBoxItem>
+            <ComboBoxItem>CL</ComboBoxItem>
+            <ComboBoxItem>DL</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="NOT" Grid.Column="2" HorizontalAlignment="Right" Margin="10 95 105 5" Height="25" Width="65" VerticalAlignment="Top" SelectedIndex="0">
+            <ComboBoxItem>AH</ComboBoxItem>
+            <ComboBoxItem>BH</ComboBoxItem>
+            <ComboBoxItem>CH</ComboBoxItem>
+            <ComboBoxItem>DH</ComboBoxItem>
+            <ComboBoxItem>AL</ComboBoxItem>
+            <ComboBoxItem>BL</ComboBoxItem>
+            <ComboBoxItem>CL</ComboBoxItem>
+            <ComboBoxItem>DL</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="ADDDestination" Grid.Column="2" HorizontalAlignment="Right" Margin="10 130 105 5" Height="25" Width="65" VerticalAlignment="Top" SelectedIndex="0">
+            <ComboBoxItem>AH</ComboBoxItem>
+            <ComboBoxItem>BH</ComboBoxItem>
+            <ComboBoxItem>CH</ComboBoxItem>
+            <ComboBoxItem>DH</ComboBoxItem>
+            <ComboBoxItem>AL</ComboBoxItem>
+            <ComboBoxItem>BL</ComboBoxItem>
+            <ComboBoxItem>CL</ComboBoxItem>
+            <ComboBoxItem>DL</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="ADDSource" Grid.Column="2" HorizontalAlignment="Right" Margin="10 130 25 5" Height="25" Width="65" VerticalAlignment="Top" SelectedIndex="0">
+            <ComboBoxItem>AH</ComboBoxItem>
+            <ComboBoxItem>BH</ComboBoxItem>
+            <ComboBoxItem>CH</ComboBoxItem>
+            <ComboBoxItem>DH</ComboBoxItem>
+            <ComboBoxItem>AL</ComboBoxItem>
+            <ComboBoxItem>BL</ComboBoxItem>
+            <ComboBoxItem>CL</ComboBoxItem>
+            <ComboBoxItem>DL</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="SUBDestination" Grid.Column="2" HorizontalAlignment="Right" Margin="10 165 105 5" Height="25" Width="65" VerticalAlignment="Top" SelectedIndex="0">
+            <ComboBoxItem>AH</ComboBoxItem>
+            <ComboBoxItem>BH</ComboBoxItem>
+            <ComboBoxItem>CH</ComboBoxItem>
+            <ComboBoxItem>DH</ComboBoxItem>
+            <ComboBoxItem>AL</ComboBoxItem>
+            <ComboBoxItem>BL</ComboBoxItem>
+            <ComboBoxItem>CL</ComboBoxItem>
+            <ComboBoxItem>DL</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="SUBSource" Grid.Column="2" HorizontalAlignment="Right" Margin="10 165 25 5" Height="25" Width="65" VerticalAlignment="Top" SelectedIndex="0">
+            <ComboBoxItem>AH</ComboBoxItem>
+            <ComboBoxItem>BH</ComboBoxItem>
+            <ComboBoxItem>CH</ComboBoxItem>
+            <ComboBoxItem>DH</ComboBoxItem>
+            <ComboBoxItem>AL</ComboBoxItem>
+            <ComboBoxItem>BL</ComboBoxItem>
+            <ComboBoxItem>CL</ComboBoxItem>
+            <ComboBoxItem>DL</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="ANDDestination" Grid.Column="2" HorizontalAlignment="Right" Margin="10 200 105 5" Height="25" Width="65" VerticalAlignment="Top" SelectedIndex="0">
+            <ComboBoxItem>AH</ComboBoxItem>
+            <ComboBoxItem>BH</ComboBoxItem>
+            <ComboBoxItem>CH</ComboBoxItem>
+            <ComboBoxItem>DH</ComboBoxItem>
+            <ComboBoxItem>AL</ComboBoxItem>
+            <ComboBoxItem>BL</ComboBoxItem>
+            <ComboBoxItem>CL</ComboBoxItem>
+            <ComboBoxItem>DL</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="ANDSource" Grid.Column="2" HorizontalAlignment="Right" Margin="10 200 25 5" Height="25" Width="65" VerticalAlignment="Top" SelectedIndex="0">
+            <ComboBoxItem>AH</ComboBoxItem>
+            <ComboBoxItem>BH</ComboBoxItem>
+            <ComboBoxItem>CH</ComboBoxItem>
+            <ComboBoxItem>DH</ComboBoxItem>
+            <ComboBoxItem>AL</ComboBoxItem>
+            <ComboBoxItem>BL</ComboBoxItem>
+            <ComboBoxItem>CL</ComboBoxItem>
+            <ComboBoxItem>DL</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="ORDestination" Grid.Column="2" HorizontalAlignment="Right" Margin="10 235 105 5" Height="25" Width="65" VerticalAlignment="Top" SelectedIndex="0">
+            <ComboBoxItem>AH</ComboBoxItem>
+            <ComboBoxItem>BH</ComboBoxItem>
+            <ComboBoxItem>CH</ComboBoxItem>
+            <ComboBoxItem>DH</ComboBoxItem>
+            <ComboBoxItem>AL</ComboBoxItem>
+            <ComboBoxItem>BL</ComboBoxItem>
+            <ComboBoxItem>CL</ComboBoxItem>
+            <ComboBoxItem>DL</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="ORSource" Grid.Column="2" HorizontalAlignment="Right" Margin="10 235 25 5" Height="25" Width="65" VerticalAlignment="Top" SelectedIndex="0">
+            <ComboBoxItem>AH</ComboBoxItem>
+            <ComboBoxItem>BH</ComboBoxItem>
+            <ComboBoxItem>CH</ComboBoxItem>
+            <ComboBoxItem>DH</ComboBoxItem>
+            <ComboBoxItem>AL</ComboBoxItem>
+            <ComboBoxItem>BL</ComboBoxItem>
+            <ComboBoxItem>CL</ComboBoxItem>
+            <ComboBoxItem>DL</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="XORDestination" Grid.Column="2" HorizontalAlignment="Right" Margin="10 270 105 5" Height="25" Width="65" VerticalAlignment="Top" SelectedIndex="0">
+            <ComboBoxItem>AH</ComboBoxItem>
+            <ComboBoxItem>BH</ComboBoxItem>
+            <ComboBoxItem>CH</ComboBoxItem>
+            <ComboBoxItem>DH</ComboBoxItem>
+            <ComboBoxItem>AL</ComboBoxItem>
+            <ComboBoxItem>BL</ComboBoxItem>
+            <ComboBoxItem>CL</ComboBoxItem>
+            <ComboBoxItem>DL</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="XORSource" Grid.Column="2" HorizontalAlignment="Right" Margin="10 270 25 5" Height="25" Width="65" VerticalAlignment="Top" SelectedIndex="0">
+            <ComboBoxItem>AH</ComboBoxItem>
+            <ComboBoxItem>BH</ComboBoxItem>
+            <ComboBoxItem>CH</ComboBoxItem>
+            <ComboBoxItem>DH</ComboBoxItem>
+            <ComboBoxItem>AL</ComboBoxItem>
+            <ComboBoxItem>BL</ComboBoxItem>
+            <ComboBoxItem>CL</ComboBoxItem>
+            <ComboBoxItem>DL</ComboBoxItem>
+        </ComboBox>
+
+    </Grid>
+</Window>
+
+    
